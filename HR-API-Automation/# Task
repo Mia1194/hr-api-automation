@@ -1,0 +1,197 @@
+## 🧩 **API Automation Task – End-to-End Flow with New Job Fixture**
+
+### 🎯 **Goal**
+
+Extend our existing Playwright API automation framework by adding a new `JobsEndpoint`, a corresponding fixture in `api-fixtures.ts`, and an **E2E test** that performs the following flow:
+
+> Create a Job → Create a Department → Create an Employee under that Department & Job → Validate all relationships → Clean up created data.
+
+---
+
+### 🧠 **Task Overview**
+
+#### 1️⃣ Create `JobsEndpoint.ts`
+
+* Create a new helper file:
+  📁 `tests/helpers/JobsEndpoint.ts`
+* It should extend `BaseEndpoint` (same style as `DepartmentsEndpoint`, `EmployeesEndpoint`).
+* Define an interface:
+
+  ```ts
+  export interface Job {
+      job_id: string;
+      job_title: string;
+      min_salary?: number;
+      max_salary?: number;
+  }
+  ```
+* Base path: `/api/jobs`
+* Required fields: `job_id`, `job_title`
+
+---
+```ts
+import { APIResponse } from '@playwright/test';
+import { BaseEndpoint } from './BaseEndpoint';
+
+const jobPayload = {
+  job_id: `IT_${unique}`;
+  job_title: "Automation Tester";
+  min_salary?: 4000;
+  max_salary?: 9000;
+}
+const job = await jobs.create(jobPayload, 201);
+
+```
+#### 2️⃣ Add Job Fixture
+
+* Open `tests/fixtures/api-fixtures.ts`
+* Add a new fixture called `jobs`:
+
+  ```ts
+  import { JobsEndpoint } from "../helpers/JobsEndpoint";
+  ```
+
+  and:
+
+  ```ts
+  jobs: async ({ apiHelper }, use) => {
+      const jobs = new JobsEndpoint(apiHelper);
+      await use(jobs);
+  },
+  ```
+
+✅ After this, every test that imports from `../fixtures/api-fixtures` will automatically have access to `jobs`.
+```ts 
+import { JobsEndpoint } from "../helpers/JobsEndpoint";
+
+export const test = base.extend({
+  jobs: async ({ apiHelper }, use) => {
+    const jobs = new JobsEndpoint(apiHelper);
+    await use(jobs);
+  },
+});
+---
+
+#### 3️⃣ Create E2E Test for Job → Department → Employee
+
+* Create a new test file:
+  📁 `tests/resource-tests/e2e-job-dept-emp.spec.ts`
+* Import:
+
+  ```ts
+  import { test, expect } from "../fixtures/api-fixtures";
+  import { CommonUtils } from "../utils/CommonUtils";
+  ```
+
+#### The test should:
+
+1. **Create a Job** using `jobs.create()`
+
+   * Use `CommonUtils.makeUniqueEmpId()` or a custom unique string for `job_id`.
+2. **Create a Department** under an existing location (use hardcoded `location_id: 1700` or similar).
+3. **Create an Employee** that references:
+
+   * the new `department_id`
+   * the new `job_id`
+4. **Validate** that:
+
+   * `employee.job_id` matches created job
+   * `employee.department_id` matches created department
+5. **Cleanup**:
+
+   * Delete employee
+   * Delete department
+   * Delete job
+
+---
+```ts
+import { test, expect } from "../fixtures/api-fixtures";
+import { CommonUtils } from "../utils/CommonUtils"; 
+test.describe('E2E: Job → Department → Employee Flow'), () => {
+  test('should create job, department, employee and validate relationships'), async ({ jobs, departments, employees }) => {
+    const unique = CommonUtils.makeUniqueEmpId()} 
+  };
+  1.  //create a job 
+            const jobPayload = {
+            job_id: `IT_${unique}`,
+            job_title: "Automation Tester",
+            min_salary: 4000,
+            max_salary: 9000
+    };
+            const job = await jobs.create(jobPayload, 201); 
+
+  2. //create department
+            const depPayload = CommonUtils.createDepPayload(undefined, undefined, 1700, `Dept_${unique}`);
+            const department = await departments.create(depPayload, 201);
+            
+         
+  3. //create employee
+           const empPayload = CommonUtils.createEmpPayload(undefined, department.department_id);
+           empPayload.job_id = job.job_id;
+           const employee = await employees.create(empPayload, 201);  
+           
+  4.// Validate
+           expect(employee.department_id).toBe(department.department_id);
+           expect(employee.job_id).toBe(job.job_id);        
+    
+  5. //Delete
+        await employees.deleteResource(Employee_id,200);
+        await departments.deleteResource(Department_id,200); 
+        await jobs.deleteResource(Job_id,200); 
+
+
+
+
+
+
+
+
+    ```
+
+
+
+
+
+
+
+#### Example Flow (Pseudo-steps)
+
+```ts
+ Step :one: Create Job
+const jobPayload = { job_id: `IT_${unique}`, job_title: "Automation Tester", min_salary: 4000, max_salary: 9000 };
+const job = await jobs.create(jobPayload, 201);
+
+// Step :two: Create Department
+const depPayload = CommonUtils.createDepPayload(undefined, undefined, 1700, `Dept_${unique}`);
+const department = await departments.create(depPayload, 201);
+
+// Step :three: Create Employee
+const empPayload = CommonUtils.createEmpPayload(undefined, department.department_id);
+empPayload.job_id = job.job_id;
+const employee = await employees.create(empPayload, 201);
+
+// Step :four: Validate
+expect(employee.department_id).toBe(department.department_id);
+expect(employee.job_id).toBe(job.job_id);
+
+// Step :five: Cleanup
+await employees.deleteResource(employee.employee_id, 200);
+await departments.deleteResource(department.department_id, 200);
+await jobs.deleteResource(job.job_id, 200);
+```
+
+---
+
+1. `tests/helpers/JobsEndpoint.ts`
+2. Updated `tests/fixtures/api-fixtures.ts` (with `jobs` fixture added)
+3. New test file: `tests/resource-tests/e2e-job-dept-emp.spec.ts`
+4. Successful test execution screenshot or HTML report
+
+---
+
+### 💬 **Bonus Challenge**
+
+* Add a negative test: try creating a Job with an existing `job_id` and assert status `409` (conflict).
+* Add schema validation for job response (`job_id`, `job_title`, `min_salary`, `max_salary`).
+
+---
