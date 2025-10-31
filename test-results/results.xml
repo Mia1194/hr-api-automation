@@ -1,0 +1,12 @@
+<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="4.7696669999999575">
+<testsuite name="resource-tests\e2e_resources.spec.ts" timestamp="2025-10-31T01:53:31.638Z" hostname="HR-API-Tests-Staging" tests="1" failures="0" skipped="0" time="0.368" errors="0">
+<testcase name="E2E Department &amp; Employee Relation Scenarios › Create Department -&gt; Create Emp -&gt; Delete Emp" classname="resource-tests\e2e_resources.spec.ts" time="0.368">
+<system-out>
+<![CDATA[[33m9655[39m
+Response Created: [object Object]
+Response Created: [object Object]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+</testsuites>

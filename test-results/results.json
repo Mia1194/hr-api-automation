@@ -1,0 +1,137 @@
+{
+  "config": {
+    "configFile": "C:\\Users\\Powertradestations\\Desktop\\HR-API-Automtion\\playwright.config.ts",
+    "rootDir": "C:/Users/Powertradestations/Desktop/HR-API-Automtion/tests",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ],
+      [
+        "junit",
+        {
+          "outputFile": "test-results/results.xml"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "C:/Users/Powertradestations/Desktop/HR-API-Automtion/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "HR-API-Tests-Staging",
+        "name": "HR-API-Tests-Staging",
+        "testDir": "C:/Users/Powertradestations/Desktop/HR-API-Automtion/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.spec.ts"
+        ],
+        "timeout": 10000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "3way",
+    "version": "1.56.0",
+    "workers": 6,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "resource-tests\\e2e_resources.spec.ts",
+      "file": "resource-tests/e2e_resources.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "E2E Department & Employee Relation Scenarios",
+          "file": "resource-tests/e2e_resources.spec.ts",
+          "line": 10,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Create Department -> Create Emp -> Delete Emp",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 10000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "HR-API-Tests-Staging",
+                  "projectName": "HR-API-Tests-Staging",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 368,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "\u001b[33m9655\u001b[39m\n"
+                        },
+                        {
+                          "text": "Response Created: [object Object]\n"
+                        },
+                        {
+                          "text": "Response Created: [object Object]\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-31T01:53:33.560Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "865d90e056201e25d0e3-2ddd1b00724c2f6465d4",
+              "file": "resource-tests/e2e_resources.spec.ts",
+              "line": 11,
+              "column": 9
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-10-31T01:53:29.256Z",
+    "duration": 4769.666999999958,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}
