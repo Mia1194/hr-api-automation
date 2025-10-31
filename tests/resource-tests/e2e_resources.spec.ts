@@ -1,4 +1,4 @@
-import {expect} from "@playwright/test";
+import { expect } from "@playwright/test";
 import { Department } from "../helpers/DepartmentsEndpoint";
 import { Employee} from "../helpers/EmployeesEndpoint";
 import { CommonUtils } from "../utils/CommonUtils";
