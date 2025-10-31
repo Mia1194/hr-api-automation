@@ -1,4 +1,4 @@
-import { test as base } from "@playwright/test";
+import { test as base} from "@playwright/test";
 import { ApiHelper } from "../helpers/ApiHelper";
 import { DepartmentsEndpoint } from "../helpers/DepartmentsEndpoint";
 import { EmployeesEndpoint } from "../helpers/EmployeesEndpoint";
@@ -10,9 +10,9 @@ type ApiFixtures = {
     departments: DepartmentsEndpoint;
     employees: EmployeesEndpoint;
     locations: LocationsEndpoint;
-    jobs:  JobsEndPoint;
+    jobs: JobsEndpoint;
 };
-wxport const expect 
+
 // Extend Playwright's test
 export const test = base.extend<ApiFixtures>(
     {
@@ -32,11 +32,11 @@ export const test = base.extend<ApiFixtures>(
             const locs = new LocationsEndpoint(apiHelper);
             await use(locs);
         },
-        jobs: async ({ apiHelper }, use) => {
-        const jobs = new JobsEndpoint(apiHelper);
-        await use(jobs);
-  }
+        jobs: async ({ apiHelper }, use ) =>{
+            const jobs = new JobsEndpoint(apiHelper);
+            await use(jobs);
+        }
         
     }
 
-);
+)
