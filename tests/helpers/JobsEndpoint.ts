@@ -11,5 +11,5 @@ export class JobsEndpoint extends BaseEndpoint<Job> {
     protected requiredFields = [
         "job_id", "job_title"
     ];
-    protected basePath = "api/jobs"
+    protected basePath = "/api/jobs"
 }

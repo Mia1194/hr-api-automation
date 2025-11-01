@@ -1,10 +1,136 @@
-<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="4.7696669999999575">
-<testsuite name="resource-tests\e2e_resources.spec.ts" timestamp="2025-10-31T01:53:31.638Z" hostname="HR-API-Tests-Staging" tests="1" failures="0" skipped="0" time="0.368" errors="0">
-<testcase name="E2E Department &amp; Employee Relation Scenarios › Create Department -&gt; Create Emp -&gt; Delete Emp" classname="resource-tests\e2e_resources.spec.ts" time="0.368">
+<testsuites id="" name="" tests="6" failures="0" skipped="0" errors="0" time="3.4649609999999997">
+<testsuite name="resource-tests\departments.spec.ts" timestamp="2025-11-01T15:41:54.562Z" hostname="HR-API-AUTOMATION" tests="1" failures="0" skipped="0" time="0.951" errors="0">
+<testcase name="Departments API E2E › Create -&gt; Get -&gt; Patch -&gt; Put -&gt; Delete -&gt; Department Flow" classname="resource-tests\departments.spec.ts" time="0.951">
 <system-out>
-<![CDATA[[33m9655[39m
+<![CDATA[Response Created: [object Object]
+/api/departments/3754
+REsponse -> 
+{ message: [32m'Department deleted.'[39m, department_id: [33m3754[39m }
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="resource-tests\e2e_resources.spec.ts" timestamp="2025-11-01T15:41:54.562Z" hostname="HR-API-AUTOMATION" tests="3" failures="0" skipped="0" time="1.318" errors="0">
+<testcase name="E2E Department &amp; Employee Relation Scenarios › Create Department -&gt; Create Emp -&gt; Delete Emp" classname="resource-tests\e2e_resources.spec.ts" time="0.411">
+<system-out>
+<![CDATA[[33m465[39m
 Response Created: [object Object]
 Response Created: [object Object]
+]]>
+</system-out>
+</testcase>
+<testcase name="E2E Department &amp; Employee Relation Scenarios › Create Department -&gt; Create Emp -&gt; Delete Dep - Neg" classname="resource-tests\e2e_resources.spec.ts" time="0.422">
+<system-out>
+<![CDATA[[33m9858[39m
+Response Created: [object Object]
+Response Created: [object Object]
+DEL RESP
+{
+  detail: {
+    message: [32m'Cannot delete department: employees belong to this department.'[39m,
+    department_id: [33m9858[39m,
+    blocking: {
+      employees_in_department_count: [33m1[39m,
+      employee_ids_sample: [36m[Array][39m,
+      by_job_breakdown: [36m[Object][39m
+    },
+    resolution: [32m'Move or remove employees from this department before deleting it.'[39m
+  }
+}
+]]>
+</system-out>
+</testcase>
+<testcase name="E2E Department &amp; Employee Relation Scenarios › Validate Location Deletion Dependency Chain" classname="resource-tests\e2e_resources.spec.ts" time="0.485">
+<system-out>
+<![CDATA[{
+  location_id: [33m1638[39m,
+  street_address: [32m'Main St 1638'[39m,
+  postal_code: [32m'ZIP1638'[39m,
+  city: [32m'City1638'[39m,
+  state_province: [1mnull[22m,
+  country_id: [1mnull[22m
+}
+Response Created: [object Object]
+Response Created: [object Object]
+{
+  department_id: [33m1518[39m,
+  department_name: [32m'QA1518'[39m,
+  manager_id: [1mnull[22m,
+  location_id: [33m1638[39m
+}
+{
+  employee_id: [33m971724[39m,
+  first_name: [32m'Auto'[39m,
+  last_name: [32m'Tester'[39m,
+  email: [32m'717240553@example.com'[39m,
+  job_id: [32m'IT_PROG'[39m,
+  salary: [33m5000[39m,
+  commission_pct: [1mnull[22m,
+  department_id: [33m1518[39m,
+  hire_date: [32m'2025-11-01'[39m
+}
+Response Created: [object Object]
+{
+  employee_id: [33m971724[39m,
+  first_name: [32m'Auto'[39m,
+  last_name: [32m'Tester'[39m,
+  email: [32m'717240553@example.com'[39m,
+  job_id: [32m'IT_PROG'[39m,
+  salary: [33m5000[39m,
+  commission_pct: [1mnull[22m,
+  department_id: [33m1518[39m,
+  hire_date: [32m'2025-11-01T00:00:00'[39m
+}
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="resource-tests\e2e-job-dept-emp.spec.ts" timestamp="2025-11-01T15:41:54.562Z" hostname="HR-API-AUTOMATION" tests="1" failures="0" skipped="0" time="0.695" errors="0">
+<testcase name="E2E Test Flow Including Jobs › Job → Department → Employee" classname="resource-tests\e2e-job-dept-emp.spec.ts" time="0.695">
+<system-out>
+<![CDATA[Response Created: [object Object]
+Response Created: [object Object]
+Response Created: [object Object]
+/api/employees/971727
+REsponse -> 
+{
+  message: [32m'Employee deleted. Dependent references cleared.'[39m,
+  employee_id: [33m971727[39m,
+  affected: {
+    subordinates_manager_id_set_null_count: [33m0[39m,
+    subordinate_employee_ids: [],
+    departments_manager_id_set_null_count: [33m0[39m,
+    department_ids: [],
+    job_history_rows_deleted: [33m0[39m
+  }
+}
+/api/departments/1426
+REsponse -> 
+{ message: [32m'Department deleted.'[39m, department_id: [33m1426[39m }
+/api/jobs/JB_1391
+REsponse -> 
+{ message: [32m'Job deleted.'[39m, job_id: [32m'JB_1391'[39m }
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="resource-tests\employees.spec.ts" timestamp="2025-11-01T15:41:54.562Z" hostname="HR-API-AUTOMATION" tests="1" failures="0" skipped="0" time="0.72" errors="0">
+<testcase name="Employees API E2E › Create -&gt; Get -&gt; Patch -&gt; Put -&gt; Delete Employee Flow" classname="resource-tests\employees.spec.ts" time="0.72">
+<system-out>
+<![CDATA[Response Created: [object Object]
+/api/employees/971698
+REsponse -> 
+{
+  message: [32m'Employee deleted. Dependent references cleared.'[39m,
+  employee_id: [33m971698[39m,
+  affected: {
+    subordinates_manager_id_set_null_count: [33m0[39m,
+    subordinate_employee_ids: [],
+    departments_manager_id_set_null_count: [33m0[39m,
+    department_ids: [],
+    job_history_rows_deleted: [33m0[39m
+  }
+}
 ]]>
 </system-out>
 </testcase>

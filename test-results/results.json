@@ -11,7 +11,7 @@
     "grepInvert": null,
     "maxFailures": 0,
     "metadata": {
-      "actualWorkers": 1
+      "actualWorkers": 6
     },
     "preserveOutput": "always",
     "reporter": [
@@ -43,10 +43,10 @@
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 1
+          "actualWorkers": 6
         },
-        "id": "HR-API-Tests-Staging",
-        "name": "HR-API-Tests-Staging",
+        "id": "HR-API-AUTOMATION",
+        "name": "HR-API-AUTOMATION",
         "testDir": "C:/Users/Powertradestations/Desktop/HR-API-Automtion/tests",
         "testIgnore": [],
         "testMatch": [
@@ -57,12 +57,76 @@
     ],
     "shard": null,
     "updateSnapshots": "missing",
-    "updateSourceMethod": "3way",
+    "updateSourceMethod": "patch",
     "version": "1.56.0",
     "workers": 6,
     "webServer": null
   },
   "suites": [
+    {
+      "title": "resource-tests\\departments.spec.ts",
+      "file": "resource-tests/departments.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Departments API E2E",
+          "file": "resource-tests/departments.spec.ts",
+          "line": 5,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Create -> Get -> Patch -> Put -> Delete -> Department Flow",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 10000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "HR-API-AUTOMATION",
+                  "projectName": "HR-API-AUTOMATION",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 951,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "Response Created: [object Object]\n"
+                        },
+                        {
+                          "text": "/api/departments/3754\n"
+                        },
+                        {
+                          "text": "REsponse -> \n"
+                        },
+                        {
+                          "text": "{ message: \u001b[32m'Department deleted.'\u001b[39m, department_id: \u001b[33m3754\u001b[39m }\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-01T15:41:56.858Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "9a28e76284fa13b4fe24-3e96e79ac85f6e693db9",
+              "file": "resource-tests/departments.spec.ts",
+              "line": 6,
+              "column": 9
+            }
+          ]
+        }
+      ]
+    },
     {
       "title": "resource-tests\\e2e_resources.spec.ts",
       "file": "resource-tests/e2e_resources.spec.ts",
@@ -85,18 +149,18 @@
                   "timeout": 10000,
                   "annotations": [],
                   "expectedStatus": "passed",
-                  "projectId": "HR-API-Tests-Staging",
-                  "projectName": "HR-API-Tests-Staging",
+                  "projectId": "HR-API-AUTOMATION",
+                  "projectName": "HR-API-AUTOMATION",
                   "results": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 368,
+                      "duration": 411,
                       "errors": [],
                       "stdout": [
                         {
-                          "text": "\u001b[33m9655\u001b[39m\n"
+                          "text": "\u001b[33m465\u001b[39m\n"
                         },
                         {
                           "text": "Response Created: [object Object]\n"
@@ -107,7 +171,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-10-31T01:53:33.560Z",
+                      "startTime": "2025-11-01T15:41:56.808Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -115,9 +179,267 @@
                   "status": "expected"
                 }
               ],
-              "id": "865d90e056201e25d0e3-2ddd1b00724c2f6465d4",
+              "id": "865d90e056201e25d0e3-255b76a84cefe208c9e5",
               "file": "resource-tests/e2e_resources.spec.ts",
               "line": 11,
+              "column": 9
+            },
+            {
+              "title": "Create Department -> Create Emp -> Delete Dep - Neg",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 10000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "HR-API-AUTOMATION",
+                  "projectName": "HR-API-AUTOMATION",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 422,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "\u001b[33m9858\u001b[39m\n"
+                        },
+                        {
+                          "text": "Response Created: [object Object]\n"
+                        },
+                        {
+                          "text": "Response Created: [object Object]\n"
+                        },
+                        {
+                          "text": "DEL RESP\n"
+                        },
+                        {
+                          "text": "{\n  detail: {\n    message: \u001b[32m'Cannot delete department: employees belong to this department.'\u001b[39m,\n    department_id: \u001b[33m9858\u001b[39m,\n    blocking: {\n      employees_in_department_count: \u001b[33m1\u001b[39m,\n      employee_ids_sample: \u001b[36m[Array]\u001b[39m,\n      by_job_breakdown: \u001b[36m[Object]\u001b[39m\n    },\n    resolution: \u001b[32m'Move or remove employees from this department before deleting it.'\u001b[39m\n  }\n}\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-01T15:41:56.847Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "865d90e056201e25d0e3-ddd768a60249c79ebc6d",
+              "file": "resource-tests/e2e_resources.spec.ts",
+              "line": 49,
+              "column": 13
+            },
+            {
+              "title": "Validate Location Deletion Dependency Chain",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 10000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "HR-API-AUTOMATION",
+                  "projectName": "HR-API-AUTOMATION",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 485,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "{\n  location_id: \u001b[33m1638\u001b[39m,\n  street_address: \u001b[32m'Main St 1638'\u001b[39m,\n  postal_code: \u001b[32m'ZIP1638'\u001b[39m,\n  city: \u001b[32m'City1638'\u001b[39m,\n  state_province: \u001b[1mnull\u001b[22m,\n  country_id: \u001b[1mnull\u001b[22m\n}\n"
+                        },
+                        {
+                          "text": "Response Created: [object Object]\n"
+                        },
+                        {
+                          "text": "Response Created: [object Object]\n"
+                        },
+                        {
+                          "text": "{\n  department_id: \u001b[33m1518\u001b[39m,\n  department_name: \u001b[32m'QA1518'\u001b[39m,\n  manager_id: \u001b[1mnull\u001b[22m,\n  location_id: \u001b[33m1638\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "{\n  employee_id: \u001b[33m971724\u001b[39m,\n  first_name: \u001b[32m'Auto'\u001b[39m,\n  last_name: \u001b[32m'Tester'\u001b[39m,\n  email: \u001b[32m'717240553@example.com'\u001b[39m,\n  job_id: \u001b[32m'IT_PROG'\u001b[39m,\n  salary: \u001b[33m5000\u001b[39m,\n  commission_pct: \u001b[1mnull\u001b[22m,\n  department_id: \u001b[33m1518\u001b[39m,\n  hire_date: \u001b[32m'2025-11-01'\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "Response Created: [object Object]\n"
+                        },
+                        {
+                          "text": "{\n  employee_id: \u001b[33m971724\u001b[39m,\n  first_name: \u001b[32m'Auto'\u001b[39m,\n  last_name: \u001b[32m'Tester'\u001b[39m,\n  email: \u001b[32m'717240553@example.com'\u001b[39m,\n  job_id: \u001b[32m'IT_PROG'\u001b[39m,\n  salary: \u001b[33m5000\u001b[39m,\n  commission_pct: \u001b[1mnull\u001b[22m,\n  department_id: \u001b[33m1518\u001b[39m,\n  hire_date: \u001b[32m'2025-11-01T00:00:00'\u001b[39m\n}\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-01T15:41:56.875Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "865d90e056201e25d0e3-6011d05892803fed6b04",
+              "file": "resource-tests/e2e_resources.spec.ts",
+              "line": 92,
+              "column": 13
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "resource-tests\\e2e-job-dept-emp.spec.ts",
+      "file": "resource-tests/e2e-job-dept-emp.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "E2E Test Flow Including Jobs",
+          "file": "resource-tests/e2e-job-dept-emp.spec.ts",
+          "line": 5,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Job → Department → Employee",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 10000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "HR-API-AUTOMATION",
+                  "projectName": "HR-API-AUTOMATION",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 695,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "Response Created: [object Object]\n"
+                        },
+                        {
+                          "text": "Response Created: [object Object]\n"
+                        },
+                        {
+                          "text": "Response Created: [object Object]\n"
+                        },
+                        {
+                          "text": "/api/employees/971727\n"
+                        },
+                        {
+                          "text": "REsponse -> \n"
+                        },
+                        {
+                          "text": "{\n  message: \u001b[32m'Employee deleted. Dependent references cleared.'\u001b[39m,\n  employee_id: \u001b[33m971727\u001b[39m,\n  affected: {\n    subordinates_manager_id_set_null_count: \u001b[33m0\u001b[39m,\n    subordinate_employee_ids: [],\n    departments_manager_id_set_null_count: \u001b[33m0\u001b[39m,\n    department_ids: [],\n    job_history_rows_deleted: \u001b[33m0\u001b[39m\n  }\n}\n"
+                        },
+                        {
+                          "text": "/api/departments/1426\n"
+                        },
+                        {
+                          "text": "REsponse -> \n"
+                        },
+                        {
+                          "text": "{ message: \u001b[32m'Department deleted.'\u001b[39m, department_id: \u001b[33m1426\u001b[39m }\n"
+                        },
+                        {
+                          "text": "/api/jobs/JB_1391\n"
+                        },
+                        {
+                          "text": "REsponse -> \n"
+                        },
+                        {
+                          "text": "{ message: \u001b[32m'Job deleted.'\u001b[39m, job_id: \u001b[32m'JB_1391'\u001b[39m }\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-01T15:41:56.913Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "540eb301a5ecb6d46455-448840b74b519a34cab6",
+              "file": "resource-tests/e2e-job-dept-emp.spec.ts",
+              "line": 6,
+              "column": 9
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "resource-tests\\employees.spec.ts",
+      "file": "resource-tests/employees.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Employees API E2E",
+          "file": "resource-tests/employees.spec.ts",
+          "line": 11,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Create -> Get -> Patch -> Put -> Delete Employee Flow",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 10000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "HR-API-AUTOMATION",
+                  "projectName": "HR-API-AUTOMATION",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 5,
+                      "status": "passed",
+                      "duration": 720,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "Response Created: [object Object]\n"
+                        },
+                        {
+                          "text": "/api/employees/971698\n"
+                        },
+                        {
+                          "text": "REsponse -> \n"
+                        },
+                        {
+                          "text": "{\n  message: \u001b[32m'Employee deleted. Dependent references cleared.'\u001b[39m,\n  employee_id: \u001b[33m971698\u001b[39m,\n  affected: {\n    subordinates_manager_id_set_null_count: \u001b[33m0\u001b[39m,\n    subordinate_employee_ids: [],\n    departments_manager_id_set_null_count: \u001b[33m0\u001b[39m,\n    department_ids: [],\n    job_history_rows_deleted: \u001b[33m0\u001b[39m\n  }\n}\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-01T15:41:56.885Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "40023e19f832e62a361a-cb5cc9fce964926f4dab",
+              "file": "resource-tests/employees.spec.ts",
+              "line": 12,
               "column": 9
             }
           ]
@@ -127,9 +449,9 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2025-10-31T01:53:29.256Z",
-    "duration": 4769.666999999958,
-    "expected": 1,
+    "startTime": "2025-11-01T15:41:54.482Z",
+    "duration": 3464.961,
+    "expected": 6,
     "skipped": 0,
     "unexpected": 0,
     "flaky": 0

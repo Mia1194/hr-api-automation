@@ -40,8 +40,11 @@ export abstract class BaseEndpoint<T>{
         return await this.apiHelper.getJSON(resp) as T;
     }
 
-        async deleteResource(ID: number, expectedStatus: number):Promise<any>{
+        async deleteResource(ID: number | string , expectedStatus: number):Promise<any>{
         const resp = await this.apiHelper.delete(`${this.basePath}/${ID}`);
+        console.log(`${this.basePath}/${ID}`);
+        console.log("REsponse -> ");
+        console.log(await this.apiHelper.getJSON(resp));
         await this.apiHelper.validateStatus(resp,expectedStatus);
         return await this.apiHelper.getJSON(resp);
     }
