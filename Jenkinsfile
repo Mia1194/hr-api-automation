@@ -31,7 +31,7 @@ pipeline{
             archiveArtifacts artifacts: 'playwright-report/**', fingerprint: true
         }
     }
-
+    }
     post{
         success { echo 'Build SUCCEDED!! -- All api tests pased. '}
         failure {echo 'Build failed.'}
@@ -39,3 +39,4 @@ pipeline{
 
 
 }
+
