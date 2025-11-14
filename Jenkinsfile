@@ -11,8 +11,6 @@ pipeline{
             }
         }
 
-    }
-
     stage('Setup Node Environment'){
         steps{
             sh 'npm ci || npm install'
@@ -38,5 +36,6 @@ pipeline{
         success { echo 'Build SUCCEDED!! -- All api tests pased. '}
         failure {echo 'Build failed.'}
     }
+
 
 }
